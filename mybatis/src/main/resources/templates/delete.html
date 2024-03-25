@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="deleteForm" th:action="@{|/delete/${board.id}|}" method="post">
+    <input type="hidden" id="pass" th:value="${board.boardPass}">
+    <label for="board-pass">비밀번호를 입력하세요 : </label><br>
+    <input type="text" name="boardPass" id="board-pass"><br>
+    <input type="button" value="확인" onclick="board_delete()">
+</form>
+
+<script th:inline="javascript">
+    const board_delete = () => {
+            const boardPass = document.getElementById("board-pass").value;
+            const savePass = document.getElementById("pass").value;
+            if (boardPass == savePass) {
+                deleteForm.submit();
+            } else {
+                alert("비밀번호가 틀립니다!!");
+            }
+        }
+
+</script>
+</body>
+</html>
